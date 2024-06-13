@@ -14,6 +14,11 @@ def generate_launch_description():
                 package='obstacle_avoidance_node',
                 plugin='obstacle_avoidance::ObstacleAvoidance',
                 name='obstacle_avoidance_node'
+            ),
+            ComposableNode(
+                package='obstacle_avoidance_node',
+                plugin='ObstacleDetection',  # Ensure this is correctly defined in the CMakeLists.txt
+                name='obstacle_detection_node'
             )
         ],
         output='screen',
@@ -28,6 +33,6 @@ def generate_launch_description():
 
     
     return LaunchDescription([
-        container,
-        obstacle_detection_node
+        container
+        # obstacle_detection_node
     ])

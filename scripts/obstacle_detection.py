@@ -215,41 +215,6 @@ class ObstacleDetection(Node):
             if is_occupied:
                 filtered_scan.ranges[i] = float('Inf')  # Set range to infinity if occupied
 
-                # to ma byc odszumianie pojedynczych skanow  
-
-        # for i in range(len(filtered_scan.ranges)):
-        #     range_val = filtered_scan.ranges[i]
-        #     if range_val == float('Inf'):  # Skip already marked points
-        #         continue
-        #     angle = msg.angle_min + i * msg.angle_increment
-
-        #     # Transform to map coordinates (same as before)
-        #     x = pose_x + range_val * np.cos(angle + pose_yaw)
-        #     y = pose_y + range_val * np.sin(angle + pose_yaw)
-        #     map_x = int((x - map_origin.position.x) / map_resolution)
-        #     map_y = int((y - map_origin.position.y) / map_resolution)
-
-        #     # Check if the point has any valid neighbors
-        #     has_valid_neighbors = False
-        #     for neighbor_x, neighbor_y in [
-        #         (-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (-1, 1), (1, -1), (1, 1)
-        #     ]:
-        #         neighbor_map_x = map_x + neighbor_x
-        #         neighbor_map_y = map_y + neighbor_y
-        #          # Check if neighbor is within bounds before accessing
-        #         if 0 <= neighbor_map_x < map_width and 0 <= neighbor_map_y < map_height:
-        #             if isolated_scan.ranges[neighbor_map_y * self.current_map.info.width + neighbor_map_x] != float('Inf'):
-        #                 has_valid_neighbors = True
-        #                 break
-        #         # if 0 <= neighbor_map_x < self.current_map.info.width and 0 <= neighbor_map_y < self.current_map.info.height:
-        #         #     if filtered_scan.ranges[neighbor_map_y * self.current_map.info.width + neighbor_map_x] != float('Inf'):
-        #         #         has_valid_neighbors = True
-        #         #         break
-
-        #     # Mark isolated points as occupied in the isolated scan
-        #     if not has_valid_neighbors:
-        #         filtered_scan.ranges[i] = float('Inf')
-
         
         # Publikacja przefiltrowanego skanu
         self.publisher_.publish(filtered_scan)
